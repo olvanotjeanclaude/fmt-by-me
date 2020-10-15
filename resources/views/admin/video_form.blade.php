@@ -107,8 +107,11 @@ else{
           <div class="checkbox-group">
             @if(count($categories))
             @foreach($categories as $category)
-             <input type="checkbox" id="{{ $category->id }}" name="categories[]" value="{{ $category->id }}" @php if(isset($video) && in_array($category->id,$videocats)) echo 'checked="checked"'; @endphp>
+             <input type="checkbox" 
+              id="{{ $category->id }}" name="categories[]" value="{{ $category->id }}"
+              @php if(isset($video) && in_array($category->id,$videocats)) echo 'checked="checked"'; @endphp>
              <label for="{{ $category->id }}">{{ $category->name }}</label><br>
+
             @endforeach
             @endif
           </div>

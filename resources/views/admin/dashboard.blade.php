@@ -64,11 +64,14 @@ $messages = $data['messages'];
                         <div class="align-self-center mr-3 rounded-circle notify-icon bg-white">
                             <i class="fa fa-users text-theme"></i>
                         </div>
-                        <h3 class="mt-0 mb-0"><strong>{{ $nb_admin }}</strong></h3>
-                        <p><small class="bc-description text-white">admin web</small></p>
+                        <div class="text-white media-body pl-2">
+                            <h3 class="mt-0 mb-0"><strong>{{ $nb_admin }}</strong></h3>
+                            <p><small class="text-white bc-description">admin web</small></p>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
