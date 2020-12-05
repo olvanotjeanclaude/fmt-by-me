@@ -17,7 +17,8 @@
 					<select id="category" class="form-control">
 						<option value="">Catégorie</option>
 						@foreach($categories as $cat)
-						<option value="{{ $cat->slug }}" {{ (request()->cat==$cat->slug) ? 'selected' : '' }} >{{ $cat->name }}</option>
+						<option value="{{ $cat->slug }}" {{ (request()->cat==$cat->slug) ? 'selected' : '' }}>
+							{{ $cat->name }}</option>
 						@endforeach
 					</select>
 					@endif
@@ -27,26 +28,24 @@
 		<div class="row">
 			<div class="col-md-9" id="video">
 				<div class="row">
+
 					@if($videos)
 					@foreach($videos as $video)
-					<div class="col-sm-6 col-lg-4">
-						<div class="card">
-							<div class="card-body">
-								<iframe class="w-100" src="{{ $video->video }}" frameborder="0" allowfullscreen></iframe>
-							</div>
-							<div class="card-footer">
-								{{ $video->title }}
-							</div>
-						</div>
+					<div class="col-md-6 p-2">
+						<iframe class="w-100" height="300" src="{{ $video->video }}" frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+						<h6 class="video-title text-capitalize">{{ $video->title }}</h6>
 					</div>
+
 					@endforeach
 
 					@endif
 
-
 				</div>
-				@if($videos) <div class="pagination-div text-left">{{ $videos->appends(request()->input())->links() }}</div> @endif
-				
+				@if($videos) <div class="pagination-div text-left">{{ $videos->appends(request()->input())->links() }}
+				</div> @endif
+
 			</div>
 
 
@@ -55,12 +54,12 @@
 					<div class="gallery-title p-2">Explorer par date</div>
 					<div class="block-content">
 						<ul id="recently-viewed-items">
-							<li class="year">&gt;<a href="?year=2020">2020</a></li>
-							<li class="year">&gt;<a href="?year=2019">2019</a></li>
-							<li class="year">&gt;<a href="?year=2018">2018</a></li>
-							<li class="year">&gt;<a href="?year=2017">2017</a></li>
-							<li class="year">&gt;<a href="?year=2016">2016</a></li>
-							<li class="year">&gt;<a href="?year=2015">2015</a></li>
+							@php
+							$currentYear=date("Y");
+							for($i=$currentYear; $i>=$currentYear-5;$i--){
+							echo '<li class=" year">&gt;<a href="?year='.$i.'">'.$i.'</a></li>';
+							}
+							@endphp
 						</ul>
 					</div>
 				</div>

@@ -29,8 +29,8 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
-        //dd(request('province'));
-        $rules = array(
+        // dd(request()->all());
+        /*$rules = array(
             'name' => 'required|string|max:100|regex:/^[A-Za-z\s-_]+$/',
             'surname' => 'required|string|max:100|regex:/^[A-Za-z\s-_]+$/',
             'birthday' => 'required|date',
@@ -41,37 +41,49 @@ class MemberController extends Controller
             'department' => 'required',
             'type' => 'required|numeric|max:3',
             'password' => 'nullable|string|min:8',
-             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5000',
+        );*/
+        $rules = array(
+            'name' => 'required|string|max:100',
+            'surname' => 'required|string|max:100',
+            'birthday' => 'required|date',
+            'gender' => 'required|numeric|max:2',
+            'province' => 'required|numeric|lt:82|gt:0',
+            'phone' => ['required'],
+            'email' => 'required|email',
+            'department' => 'required',
+            'type' => 'required|numeric|max:3',
+            'password' => 'nullable|string|min:8',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5000',
         );
         $messages = array(
-            "name.string" =>"Le format du nom n'est pas valide." ,
-            "name.regex" => "Le format du nom n'est pas valide." ,
-            "surname.string" =>"Le format du prenom n'est pas valide." ,
-            "surname.regex" => "Le format du prenom n'est pas valide." ,
+            "name.string" => "Le format du nom n'est pas valide.",
+            "name.regex" => "Le format du nom n'est pas valide.",
+            "surname.string" => "Le format du prenom n'est pas valide.",
+            "surname.regex" => "Le format du prenom n'est pas valide.",
             "phone.regex" => "Le format du téléphone n'est pas valide.",
             "password" => "Le mot de passe doit comporter au moins 8 caractères.",
             "phone.regex" => "Le format du téléphone n'est pas valide.",
             "image.image" => "Format d'image invalide",
             "image.mimes" => "L'image doit être un fichier de type: jpg, png, jpeg, gif, svg."
-        )  ;
+        );
 
-        $data = Request()->validate($rules,$messages);
+        $data = Request()->validate($rules, $messages);
 
         if (request('image')) {
 
             $image = $request->file("image");
-            $ImageName = time()."_".$image->getClientOriginalName();
+            $ImageName = time() . "_" . $image->getClientOriginalName();
             $destinationPath = public_path('/storage/user/');
             $image->move($destinationPath, $ImageName);
 
-            $uploadedImage = $destinationPath.$ImageName;
-            $imagePath = "user/".$ImageName;
+            $uploadedImage = $destinationPath . $ImageName;
+            $imagePath = "user/" . $ImageName;
             $image = Image::make($uploadedImage)->fit(1000, 1000);
 
             $imageArray = ['image' => $imagePath];
 
             $image->save($uploadedImage);
-
         }
 
         if (request('password')) {
@@ -107,12 +119,12 @@ class MemberController extends Controller
     }
 
     public function list()
-         {
-              $users = User::orderBy("created_at","desc")->paginate(5);
-        
-          return view('admin.members')->with('users', $users);
+    {
+        $users = User::orderBy("created_at", "desc")->paginate(5);
+
+        return view('admin.members')->with('users', $users);
     }
-    
+
 
     public function edit($id)
     {
@@ -123,7 +135,7 @@ class MemberController extends Controller
 
     public function update($id)
     {
-        $rules = array(
+        /*$rules = array(
             'name' => 'required|string|max:100|regex:/^[A-Za-z\s-_]+$/',
             'surname' => 'required|string|max:100|regex:/^[A-Za-z\s-_]+$/',
             'birthday' => 'required|date',
@@ -135,35 +147,47 @@ class MemberController extends Controller
             'type' => 'required|numeric|max:3',
             'password' => 'nullable|string|min:8',
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5000',
+        );*/
+        $rules = array(
+            'name' => 'required|string|max:100',
+            'surname' => 'required|string|max:100',
+            'birthday' => 'required|date',
+            'gender' => 'required|numeric|max:2',
+            'province' => 'required|numeric|lt:82|gt:0',
+            'phone' => ['required'],
+            'email' => 'required|email',
+            'department' => 'required',
+            'type' => 'required|numeric|max:3',
+            'password' => 'nullable|string|min:8',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:5000',
         );
         $messages = array(
-            "name.string" =>"Le format du nom n'est pas valide." ,
-            "name.regex" => "Le format du nom n'est pas valide." ,
-            "surname.string" =>"Le format du prenom n'est pas valide." ,
-            "surname.regex" => "Le format du prenom n'est pas valide." ,
+            "name.string" => "Le format du nom n'est pas valide.",
+            "name.regex" => "Le format du nom n'est pas valide.",
+            "surname.string" => "Le format du prenom n'est pas valide.",
+            "surname.regex" => "Le format du prenom n'est pas valide.",
             "phone.regex" => "Le format du téléphone n'est pas valide.",
             "password" => "Le mot de passe doit comporter au moins 8 caractères.",
             "phone.regex" => "Le format du téléphone n'est pas valide.",
             "image.image" => "Format d'image invalide",
             "image.mimes" => "L'image doit être un fichier de type: jpg, png, jpeg, gif, svg."
-        )  ;
+        );
 
-        $data = Request()->validate($rules,$messages);
+        $data = Request()->validate($rules, $messages);
 
         if (request('image')) {
             $image = Request()->file("image");
-            $imageName =time()."_".$image->getClientOriginalName();
+            $imageName = time() . "_" . $image->getClientOriginalName();
             $imageDestination = public_path("/storage/user/");
-            $image->move($imageDestination,$imageName);
+            $image->move($imageDestination, $imageName);
 
             $updatedImage = $imageDestination . $imageName;
 
             $image = Image::make($updatedImage)->fit(1000, 1000);
-            $imagePath = "user/".$imageName;
+            $imagePath = "user/" . $imageName;
             $imageArray = ['image' => $imagePath];
 
             $image->save($updatedImage);
-
         }
 
         if (request('password')) {

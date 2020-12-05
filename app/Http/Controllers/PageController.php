@@ -36,7 +36,7 @@ class PageController extends Controller
     }
     public function video(Request $request)
     {
-        $pagination = 6;
+        $pagination = 4;
 
         if (request()->year) {
             $year = request()->year;
@@ -45,7 +45,7 @@ class PageController extends Controller
             $cat = Gallerycategory::where('slug', request()->cat)->firstOrFail();
             $videos = $cat->videos()->where('featured', true)->paginate($pagination);
 
-            //dd($videos);
+            // dd($videos);
         } else {
             $videos = Video::where('featured', true)->paginate($pagination);
         }

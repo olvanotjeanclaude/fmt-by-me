@@ -14,17 +14,18 @@ use App\Activity;
 class HomeController extends Controller
 {
     //
-    public function index(){
-    	$sliders = Slider::where('featured',true)->get();
-    	$abouts = About::where('featured',true)->take(1)->get();
-    	$about = $abouts[0];
-        $news = Actu::where('featured',true)->orderBy('created_at','desc')->take(3)->get();
-        $events = Activity::where([['featured',true],['activity_date','>',now()]])->orderBy('activity_date')->take(4)->get();
+    public function index()
+    {
+        $sliders = Slider::where('featured', true)->get();
+        $abouts = About::where('featured', true)->take(1)->get();
+        $about = $abouts[0];
+        $news = Actu::where('featured', true)->orderBy('created_at', 'desc')->take(3)->get();
+        $events = Activity::where([['featured', true], ['activity_date', '>', now()]])->orderBy('activity_date')->take(4)->get();
         //dd($events);
         $coming_event = $events->shift();
         $events = $events->all();
 
-        $studentwords = Studentword::with('user')->has('user')->where('featured',true)->get();
+        $studentwords = Studentword::with('user')->has('user')->where('featured', true)->get();
 
         $office_members = User::with('positions')->has('positions')->get();
         $contacts = Contact::take(2)->get();
@@ -33,12 +34,12 @@ class HomeController extends Controller
         $contactArr = json_decode(json_encode($contacts), true);
 
         $assContact = array_filter($contactArr, function ($contact) {
-                        return ($contact['name'] == 'Association');
-                    });
+            return ($contact['name'] == 'Association');
+        });
 
         $consulatContact = array_filter($contactArr, function ($contact) {
-                        return ($contact['name'] == 'Consulat');
-                    });
+            return ($contact['name'] == 'Consulat');
+        });
 
         //dd($consulatContact);
 
@@ -68,24 +69,23 @@ class HomeController extends Controller
         // }
         // dd($pos);
 
-    	//$about->dd();
-    	return view('index')->with([
-    		'sliders'=>$sliders,
-    		'about'=>$about,
-            'news'=>$news,
-            'coming_event'=>$coming_event,
-            'events'=>$events,
-            'studentwords'=>$studentwords,
-            'office_members'=>$office_members,
-            'assContact'=>$assContact,
-            'consulatContact'=>$consulatContact
-    	]);
+        //$about->dd();
+        return view('index')->with([
+            'sliders' => $sliders,
+            'about' => $about,
+            'news' => $news,
+            'coming_event' => $coming_event,
+            'events' => $events,
+            'studentwords' => $studentwords,
+            'office_members' => $office_members,
+            'assContact' => $assContact,
+            'consulatContact' => $consulatContact
+        ]);
     }
 
 
     public function toObject($arr)
-        {
-            return json_decode(json_encode((object)$arr), false);
-        }
-
+    {
+        return json_decode(json_encode((object)$arr), false);
+    }
 }
