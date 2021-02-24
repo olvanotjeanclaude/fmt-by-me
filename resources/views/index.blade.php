@@ -32,7 +32,7 @@
     <div class="presetantion">
         <div class="container">
             <div class="row">
-                <p class="py-3 px-4 px-lg-0 text-white fa-300 slideInLeft">
+                <p class="small  px-2 px-lg-0 text-white fa-300 slideInLeft">
                     <span class="ml-4"> Bienvenu</span> sur la page de l’Union des Malagasy de Turquie, page dédiée
                     surtout à faire connaître la
                     vie et les activités de la diaspora Malagasy vivant en Turquie.
