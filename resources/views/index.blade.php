@@ -2,6 +2,16 @@
 
 @section('title','Page d\'accueil')
 @section('main')
+<!--loader-->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+
+<!--full page-->
 
 <!--slider-->
 <section class="container-fluid wow fadeIn">
@@ -32,20 +42,9 @@
     <div class="presetantion">
         <div class="container">
             <div class="row">
-                <p class="small  px-2 px-lg-0 text-white fa-300 slideInLeft">
-                    <span class="ml-4"> Bienvenu</span> sur la page de l’Union des Malagasy de Turquie, page dédiée
-                    surtout à faire connaître la
-                    vie et les activités de la diaspora Malagasy vivant en Turquie.
-                    Majoritairement composés d’étudiants universitaires, la diaspora Malagasy en Turquie est une petite
-                    communauté où tout le monde se connaît. Conscient de la difficulté à vivre à l’étranger et vu
-                    l’inexistence de d’Ambassade local, ces mêmes étudiants ont eu l’idée de créer un groupe
-                    initialement pour partager des informations mais aussi pour s’entraider entre eux. C’est là qu’est
-                    né l’Union des Malagasy de Turquie.
-                    A long terme, nous envisageons de faire de ce plateforme un outil permettant de lier Madagascar et
-                    la Turquie dans différents domaines.
-
-                </p>
-
+                <h6 class="col-12 my-3 text-center text-white fa-300 slideInLeft">
+                    Bienvenu sur la page de l’Union des Malagasy de Turquie.
+                </h6>
             </div>
         </div>
     </div><!-- end / presentation -->
@@ -142,7 +141,23 @@
                     <h2 class="wow slideInRight">A Propos</h2>
                     <span class="bordered-icon"><i class="fa fa-institution"></i></span>
                 </div>
-                <p class="wow slideInLeft fw-300">{{ $about->about }}</p>
+                <!--Words of president dynamic-->
+                <!-- <p class="wow slideInLeft fw-300">{{ $about->about }}</p>-->
+                <p>
+                    Page dédiée
+                    surtout à faire connaître la
+                    vie et les activités de la diaspora Malagasy vivant en Turquie.
+                    Majoritairement composés d’étudiants universitaires, la diaspora Malagasy en Turquie est une
+                    petite
+                    communauté où tout le monde se connaît. Conscient de la difficulté à vivre à l’étranger et vu
+                    l’inexistence de d’Ambassade local, ces mêmes étudiants ont eu l’idée de créer un groupe
+                    initialement pour partager des informations mais aussi pour s’entraider entre eux. C’est là
+                    qu’est
+                    né l’Union des Malagasy de Turquie.
+                    A long terme, nous envisageons de faire de ce plateforme un outil permettant de lier Madagascar
+                    et
+                    la Turquie dans différents domaines.
+                </p>
             </div>
 
             <div class="col-md-6 wow slideInRight">
@@ -150,23 +165,16 @@
 
                     <div class="img-president">
                         <img src="{{ getImage($about->image) }}">
-                        <p class="president-word fw-300" style="display: none;">
-                            {{ $about->words_of_president }}
-                        </p>
                     </div>
 
                     <!-- quote-->
                     <blockquote class="quote about-quote">
-                        <p class="quote-02__text">
-                            {{ $about->words_of_president }}
-                        </p>
                         <!-- president -->
-                        <div style="float: right;">
-                            <div class="president__info">
-                                <h5 class="president__name">Mr Zafera eliot</h5>
-                                <p>Président</p>
-                            </div>
-                        </div><!-- end / president -->
+                        <div class="president__info">
+                            <h5 class="president__name">Mr Zafera eliot</h5>
+                            <p>Président</p>
+                        </div>
+                        <!-- end / president -->
 
                     </blockquote><!-- end / quote -->
 
@@ -320,23 +328,17 @@
                     @endif
                     @if($assContact->email)
                     <div class="widget-contact__item">
-                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse email:</span>
+                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse
+                            email:</span>
                         <p class="widget-contact__text"><a
                                 href="mailto:consular@madagaskar.us">{{ $assContact->email }}</a></p>
                     </div>
                     @endif
                     @if($assContact->email2)
                     <div class="widget-contact__item">
-                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse email 2:</span>
+                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse email
+                            2:</span>
                         <p class="widget-contact__text"><a href="#"> {{ $assContact->email2 }}</a></p>
-                    </div>
-                    @endif
-                    @if($assContact->address)
-                    <div class="widget-contact__item">
-                        <span class="widget-contact__title"><i class="fa fa-map-marker red"></i> Adresse:</span>
-                        <p class="widget-contact__text">
-                            {{ $assContact->address }}
-                        </p>
                     </div>
                     @endif
                     @endif
@@ -468,14 +470,16 @@
                     @endif
                     @if($consulatContact->email)
                     <div class="widget-contact__item">
-                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse email:</span>
+                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse
+                            email:</span>
                         <p class="widget-contact__text"><a
                                 href="mailto:consular@madagaskar.us">{{ $consulatContact->email }}</a></p>
                     </div>
                     @endif
                     @if($consulatContact->email2)
                     <div class="widget-contact__item">
-                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse email 2:</span>
+                        <span class="widget-contact__title"><i class="fa fa-envelope-o red"></i> Adresse email
+                            2:</span>
                         <p class="widget-contact__text"><a href="#"> {{ $consulatContact->email2 }}</a></p>
                     </div>
                     @endif
@@ -512,24 +516,11 @@
 <!--end contact-->
 
 @endsection
-<div id="formContact" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Message du serveur :</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Message envoyé avec succès !</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-            </div>
-        </div>
-    </div>
+<div id="modalFormSent" class="modal" tabindex="-1" role="dialog">
+
 </div>
+
+
 
 @section('scripts')
 <script type="text/javascript" src="/assets/js/count-down.js"></script>
