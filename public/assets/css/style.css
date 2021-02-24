@@ -1218,6 +1218,7 @@ footer .widget-contact__text {
 
 .socials .socials__item {
     margin-bottom: 8px;
+    margin-left: 5px;
     padding-bottom: 0;
 }
 
@@ -1290,6 +1291,9 @@ footer .widget-contact__text {
 @media only screen and (min-width: 768px) {
     .carousel-item {
         height: 540px;
+    }
+    .swiper-slide img {
+        height: 100%;
     }
 }
 
