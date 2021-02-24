@@ -1073,7 +1073,7 @@ select:focus {
         font-style: italic;
     }
     .about-quote {
-        display: none;
+        margin-right: 30px;
     }
     #madagaskar h3 {
         font-size: 20px;
@@ -1094,28 +1094,6 @@ select:focus {
     }
 }
 
-@media only screen and (max-width: 550px) {
-    .carousel-caption {
-        bottom: 22px;
-    }
-    .swiper-container {
-        height: 34vh;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
-    .about-quote {
-        height: 320px!important;
-        font-size: 14.5px;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    /* .swiper-container {
-        height: 83vh;
-    }*/
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
     .container {
         max-width: 900px;
@@ -1125,6 +1103,9 @@ select:focus {
 @media (min-width: 576px) and (max-width: 767px) {
     .container {
         max-width: 660px;
+    }
+    .about-quote {
+        margin-right: 40px;
     }
 }
 
